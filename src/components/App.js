@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { fetchPosts } from '../actions/posts';
+import { PostsList } from './';
 
 class App extends Component {
   componentDidMount() {
     this.props.dispatch(fetchPosts());
   }
-  
+
   render() {
-    console.log("Props : ",this.props)
+    const { posts } = this.props;
     return (
       <div>
-        Welcome to Alpenliebe
+        <PostsList posts={posts} />
       </div>
     );
   }
