@@ -12,6 +12,11 @@ class Settings extends Component {
     };
   }
 
+  handleChange = (fieldName, val) => {
+    this.setState({
+      [fieldName]: val,
+    });
+  };
   render() {
     const { user } = this.props.auth;
     const { editMode } = this.state;
@@ -48,6 +53,7 @@ class Settings extends Component {
 
             <input
               type="password"
+              onChange={(e) => this.handleChange('password', e.target.value)}
               value={this.state.password}
             />
           </div>
@@ -59,6 +65,9 @@ class Settings extends Component {
 
             <input
               type="password"
+              onChange={(e) =>
+                this.handleChange('confirmPassword', e.target.value)
+              }
               value={this.state.confirmPassword}
             />
           </div>
@@ -70,6 +79,7 @@ class Settings extends Component {
           ) : (
             <button
               className="button edit-btn"
+              onClick={() => this.handleChange('editMode', true)}
             >
               Edit profile
             </button>
@@ -78,6 +88,7 @@ class Settings extends Component {
           {editMode && (
             <div
               className="go-back"
+              onClick={() => this.handleChange('editMode', false)}
             >
               Go back
             </div>
